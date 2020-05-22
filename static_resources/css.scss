@@ -1,0 +1,57 @@
+$scale: 1;
+$logo_width: 210px * $scale;
+$logo_height: 236px * $scale;
+
+$bar_height: $logo_height - 30px;
+$bar_offset: $logo_width / 2;
+$main_height: $logo_height;
+$main_width: 1920px;
+
+$cathedral_black: #1E1E1E;
+$cathedral_white: #FFFFFF;
+
+h1, h2 {
+  font-family: "Source Sans Pro", monospace;
+  color: white;
+}
+
+#top {
+  font-size: 60px;
+  margin: 0;
+}
+h2 {
+  margin:0;
+  font-size: 30pt;
+}
+.main {
+  height: $main_height;
+  width: $main_width;
+  background: rgba(0,0,0,0);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+
+.main img {
+  height: $logo_height;
+  width: $logo_width;
+  z-index: 50;
+  flex-basis: $logo_width;
+}
+
+.bar {
+  height: $bar_height;
+  width: $main_width + $bar_offset - $logo_width;
+  flex-shrink: 0;
+  background: $cathedral_black;
+  padding-left: 50px + $bar_offset;
+  transform: translateX(-$bar_offset);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

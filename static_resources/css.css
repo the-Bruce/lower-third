@@ -1,0 +1,47 @@
+h1, h2 {
+  font-family: "Source Sans Pro", monospace;
+  color: white;
+}
+
+#top {
+  font-size: 60px;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+  font-size: 30pt;
+}
+
+.main {
+  height: 236px;
+  width: 1920px;
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main img {
+  height: 236px;
+  width: 210px;
+  z-index: 50;
+  flex-basis: 210px;
+}
+
+.bar {
+  height: 206px;
+  width: 1815px;
+  flex-shrink: 0;
+  background: #1E1E1E;
+  padding-left: 155px;
+  transform: translateX(-105px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*# sourceMappingURL=css.css.map */

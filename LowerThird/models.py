@@ -42,10 +42,11 @@ def new_session():
 
 
 class Session(models.Model):
-    class States(models.TextChoices):
+    class States:
         INITIALISING = "Init"
         BLANK = "Blank"
         ACTIVE = "Active"
+        choices = (INITIALISING, "Initialising"), (BLANK, "Blank"), (ACTIVE, "Active")
 
     session = models.CharField(max_length=5, default=new_session, unique=True)
     date = models.DateField(default=timezone.now)

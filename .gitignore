@@ -1,5 +1,6 @@
 /static_resources/logo.gif
 local_config.py
+*.swp
 
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template

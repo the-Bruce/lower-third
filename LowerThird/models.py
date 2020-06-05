@@ -1,5 +1,6 @@
 import random
 import string
+from operator import itemgetter
 
 from django.db import models
 
@@ -17,7 +18,6 @@ class Scene(models.Model):
 
 class Program(models.Model):
     name = models.CharField(max_length=20)
-    scenes = models.ManyToManyField(Scene, through='ProgramScene')
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class Program(models.Model):
 
 class ProgramScene(models.Model):
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="scenes")
     order = models.IntegerField()
 
     class Meta:
@@ -41,6 +41,11 @@ def new_session():
     return ''.join(random.choice(letters) for i in range(5))
 
 
+def new_key():
+    letters = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters) for i in range(128))
+
+
 class Session(models.Model):
     class States:
         INITIALISING = "Init"
@@ -48,7 +53,14 @@ class Session(models.Model):
         ACTIVE = "Active"
         choices = (INITIALISING, "Initialising"), (BLANK, "Blank"), (ACTIVE, "Active")
 
+        def __contains__(self, item):
+            return item in map(itemgetter(0), self.choices)
+
+        def __len__(self):
+            len(self.choices)
+
     session = models.CharField(max_length=5, default=new_session, unique=True)
+    key = models.CharField(max_length=128, default="", blank=True)
     date = models.DateField(default=timezone.now)
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE, blank=True, null=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, blank=True, null=True)

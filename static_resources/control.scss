@@ -1,0 +1,62 @@
+$scale: 0.6;
+$logo_width: 210px * $scale;
+$logo_height: 236px * $scale;
+
+$bar_height: $logo_height - 20px;
+$bar_offset: $logo_width / 2;
+$main_height: $logo_height;
+$main_width: 900px;
+
+$cathedral_black: #1E1E1E;
+$cathedral_white: #FFFFFF;
+
+$breakpoint: 500px;
+
+.preview {
+  font-family: "Source Sans Pro", monospace;
+  color: white;
+  height: $main_height;
+  width: 100%;
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.preview img {
+  display: block;
+  height: $logo_height;
+  width: $logo_width;
+  z-index: 50;
+  flex-basis: $logo_width;
+  @media (max-width: $breakpoint) {
+    display: none;
+  }
+}
+
+.bar {
+  height: $bar_height;
+  flex-shrink: 0;
+  background: $cathedral_black;
+  width: 100%;
+  padding-left: 20px;
+  @media (min-width: $breakpoint) {
+    padding-left: 50px + $bar_offset;
+    transform: translateX(-$bar_offset);
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  h1, h2 {
+    white-space: nowrap;
+  }
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 2.5rem 1rem;
+}

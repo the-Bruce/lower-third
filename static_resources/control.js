@@ -71,9 +71,9 @@ function updateDisplay(data) {
         $('#next').prop('disabled', false);
 
     if (current_state === "Blank")
-        $('#blank').html('<i class="fas fa-play" title="Un-Blank"></i>');
+        $('#blank').html('<i class="fas fa-play h1" title="Un-Blank"></i>');
     else
-        $('#blank').html('<i class="fas fa-pause" title="Blank"></i>');
+        $('#blank').html('<i class="fas fa-pause h1" title="Blank"></i>');
 
 }
 

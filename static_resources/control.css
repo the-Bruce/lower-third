@@ -1,0 +1,53 @@
+.preview {
+  font-family: "Source Sans Pro", monospace;
+  color: white;
+  height: 141.6px;
+  width: 100%;
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.preview img {
+  display: block;
+  height: 141.6px;
+  width: 126px;
+  z-index: 50;
+  flex-basis: 126px;
+}
+@media (max-width: 500px) {
+  .preview img {
+    display: none;
+  }
+}
+
+.bar {
+  height: 121.6px;
+  flex-shrink: 0;
+  background: #1E1E1E;
+  width: 100%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (min-width: 500px) {
+  .bar {
+    padding-left: 113px;
+    transform: translateX(-63px);
+  }
+}
+.bar h1, .bar h2 {
+  white-space: nowrap;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 2.5rem 1rem;
+}
+
+/*# sourceMappingURL=control.css.map */

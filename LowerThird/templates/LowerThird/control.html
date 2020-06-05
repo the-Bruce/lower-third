@@ -5,6 +5,7 @@
 {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "control.css" %}">
@@ -46,14 +47,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="btn-group btn-block btn-group-lg mb-3" role="group" aria-label="Scene Control">
-                    <button type="button" id="previous" class="btn btn-outline-dark control" onclick="showprevious()"><i class="fas fa-backward h1" title="Previous"></i></button>
-                    <button type="button" id="next" class="btn btn-outline-dark control" onclick="shownext()"><i class="fas fa-forward h1" title="Next"></i></button>
+                    <button type="button" id="previous" class="btn btn-outline-dark control" onclick="showprevious()"><i class="fas fa-backward" title="Previous"></i></button>
+                    <button type="button" id="next" class="btn btn-outline-dark control" onclick="shownext()"><i class="fas fa-forward" title="Next"></i></button>
                 </div>
                 <button type="button" id="blank" class="btn btn-outline-dark btn-lg btn-block mb-3 control" onclick="showblank()">
                     {% if ses.state == "Blank" %}
-                        <i class="fas fa-play h1" title="Un-Blank"></i>
+                        <i class="fas fa-play" title="Un-Blank"></i>
                     {% else %}
-                        <i class="fas fa-pause h1" title="Blank"></i>
+                        <i class="fas fa-pause" title="Blank"></i>
                     {% endif %}
                 </button>
             </div>

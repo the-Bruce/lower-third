@@ -28,6 +28,10 @@ $.ajaxSetup({
     }
 });
 
+$('.control').bind('touchend', function(e) {
+  e.preventDefault();
+})
+
 $(document).ready(function () {
     console.log("Starting");
     setup();

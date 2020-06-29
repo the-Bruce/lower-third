@@ -17,6 +17,10 @@ $breakpoint: 500px;
   padding: 2.5rem 1rem;
 }
 
+.control {
+  touch-action: manipulation;
+}
+
 .fas {
   font-size: 50pt;
 }

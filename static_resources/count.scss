@@ -1,0 +1,22 @@
+$cathedral_black: #1E1E1E;
+$cathedral_white: #FFFFFF;
+
+$breakpoint: 500px;
+
+.counter {
+  font-family: "Source Sans Pro", monospace;
+  color: $cathedral_black;
+  text-align: center;
+  h1 {
+    margin-bottom: 0;
+    font-size: 150pt;
+  }
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 2.5rem 1rem;
+}
+
+.fas {
+  font-size: 50pt;
+}

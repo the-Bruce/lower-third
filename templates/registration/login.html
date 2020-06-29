@@ -1,0 +1,48 @@
+{% extends "core.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <div class="container-fluid my-4">
+        <div class="card mb-3 bg-light w-50 m-auto">
+            <h1 class="card-header text-center">Login</h1>
+            <div class="card-body">
+                <form class="flex flex-column" method="post">
+                    {% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username|add_class:"form-control form-control-lg"|add_error_class:"is-invalid" }}
+                        {% if form.username.help_text %}
+                            <small class="form-text">
+                                {{ form.username.help_text }}
+                            </small>
+                        {% endif %}
+                        {% if form.username.errors %}
+                            <small class="invalid-feedback">
+                                {{ form.username.errors }}
+                            </small>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label_tag }}
+                        {{ form.password|add_class:"form-control form-control-lg"|add_error_class:"is-invalid" }}
+                        {% if form.password.help_text %}
+                            <small class="form-text">
+                                {{ form.password.help_text }}
+                            </small>
+                        {% endif %}
+                        {% if form.password.errors %}
+                            <small class="invalid-feedback">
+                                {{ form.password.errors }}
+                            </small>
+                        {% endif %}
+                    </div>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <button type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

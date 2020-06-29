@@ -169,7 +169,7 @@ function adjacentPrograms() {
 
 function send(scene, state) {
     $.ajax({
-        url: '/api/update/',
+        url: '/api/third/update/',
         method: 'POST',
         dataType: 'json',
         data: {
@@ -184,7 +184,7 @@ function send(scene, state) {
 
 function check() {
     $.ajax({
-        url: '/api/session_state/',
+        url: '/api/third/session_state/',
         dataType: 'json',
         type: 'get',
         data: {'session': session},

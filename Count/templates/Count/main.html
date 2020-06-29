@@ -1,0 +1,26 @@
+{% extends "core.html" %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "count.css" %}">
+    <script src="{% static "count.min.js" %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="card m-3">
+        <div class="card-body counter">
+            <h1 class="text-center" id="count-val">
+                Loading...
+            </h1>
+        </div>
+    </div>
+    <div class="card m-3">
+        <div class="card-body">
+            <div class="btn-block btn-group-lg btn-group">
+                <button class="btn btn-outline-dark btn-lg control" id="count-dec" onclick="dec()"><i class="fas fa-minus"></i></button>
+                <button class="btn btn-outline-dark btn-lg" id="count-inc" onclick="inc()"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

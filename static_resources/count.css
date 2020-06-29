@@ -1,0 +1,19 @@
+.counter {
+  font-family: "Source Sans Pro", monospace;
+  color: #1E1E1E;
+  text-align: center;
+}
+.counter h1 {
+  margin-bottom: 0;
+  font-size: 150pt;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 2.5rem 1rem;
+}
+
+.fas {
+  font-size: 50pt;
+}
+
+/*# sourceMappingURL=count.css.map */

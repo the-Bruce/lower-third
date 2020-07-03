@@ -27,6 +27,8 @@ class CurrentState(View):
 
         ret = {
             "count": dc.current,
+            "total": dc.total,
+            "peak": dc.peak,
         }
         return JsonResponse(ret)
 
@@ -45,11 +47,16 @@ class UpdateState(View):
         except ValueError:
             return HttpResponseBadRequest(request, reason="Invalid Change")
         next = max(dc.current + delta, 0)
+        total = dc.total + max(delta, 0)
+        peak = max(dc.current+delta, dc.peak)
         dc.peak = Greatest(F('current') + delta, F('peak'))
+        dc.total = F('total') + Greatest(delta, 0)
         dc.current = Greatest(F('current') + delta, 0)
         dc.save()
 
         ret = {
             "count": next,
+            "total": total,
+            "peak": peak,
         }
         return JsonResponse(ret)

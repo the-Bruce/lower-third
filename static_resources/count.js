@@ -35,6 +35,8 @@ $(document).ready(function () {
 
 function updateDisplay(data) {
     $("#count-val").text(data['count']);
+    $("#total-val").text(data['total']);
+    $("#peak-val").text(data['peak']);
 }
 
 function inc() {

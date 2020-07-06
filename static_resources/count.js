@@ -1,3 +1,7 @@
+//let rot = 0;
+let syncedInterval = setTimeout(function () { // run function after 1000 ms
+    }, 1000);
+
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -37,6 +41,22 @@ function updateDisplay(data) {
     $("#count-val").text(data['count']);
     $("#total-val").text(data['total']);
     $("#peak-val").text(data['peak']);
+    //rot = (rot+45)%360;
+    //$("#sync-indicator").attr('data-fa-transform','rotate-'+rot.toString())
+    sync_status();
+}
+
+function sync_status() {
+    clearTimeout(syncedInterval);
+    $("#sync-indicator").addClass('fa-spin')
+    syncedInterval = setTimeout(function () { // run function after 1000 ms
+        unspin();
+    }, 1000);
+}
+
+function unspin() {
+    console.log("Unspinned")
+    $("#sync-indicator").removeClass('fa-spin')
 }
 
 function inc() {
@@ -53,6 +73,7 @@ function send(delta) {
         method: 'POST',
         dataType: 'json',
         data: {
+            'device': device_id,
             'change': delta,
         },
         success: updateDisplay,

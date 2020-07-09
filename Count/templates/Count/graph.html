@@ -1,0 +1,28 @@
+{% extends "core.html" %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-3">
+
+        <div class="card" class="max-width: 500px">
+            <div class="card-header">
+                <h1>{{ date|date:"l, jS F Y" }}</h1>
+            </div>
+            {% if graph %}
+                <img src="{{ graph.url }}" class="card-img" alt="Graph">
+            {% else %}
+                <p class="alert alert-{{ error_level }} m-3">{{ error }}</p>
+            {% endif %}
+            <div class="card-footer">
+                <div class="btn-group-lg btn-group btn-block">
+                    <a href="{% url 'count:graph' prev.year prev.month prev.day %}" class="btn btn-lg btn-outline-dark">Previous</a>
+                    <a href="{% url 'count:graph' next.year next.month next.day %}" class="btn btn-lg btn-outline-dark">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

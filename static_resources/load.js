@@ -8,7 +8,7 @@ function setup() {
     if (session !== "") {
         let poll = function () {
             $.ajax({
-                url: '/api/session_state/',
+                url: '/api/third/session_state/',
                 dataType: 'json',
                 type: 'get',
                 data: {'session': session},

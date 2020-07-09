@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 import datetime
@@ -27,8 +27,9 @@ class DisplayView(TemplateView):
         return context
 
 
-class ControlView(LoginRequiredMixin, TemplateView):
+class ControlView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
     template_name = "LowerThird/control.html"
+    permission_required = "LowerThird.view_session"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

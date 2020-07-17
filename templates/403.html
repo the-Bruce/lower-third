@@ -1,0 +1,17 @@
+{% extends "core.html" %}
+
+{% block body %}
+    <div class="container-fluid my-4">
+        <div class="card mb-3 bg-light w-50 m-auto">
+            <div class="card-body">
+
+                <h1 class="card-title text-center mb-3">Sorry, you don't have permission to do that.</h1>
+                <button type="button" id="blank" class="btn btn-outline-dark btn-lg btn-block mb-3 control"
+                        onclick="window.history.back()">
+                    <i class="fas fa-arrow-circle-left" title="Go Back"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

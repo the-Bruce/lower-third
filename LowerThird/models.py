@@ -5,6 +5,7 @@ from operator import itemgetter
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -68,3 +69,13 @@ class Session(models.Model):
 
     def __str__(self):
         return self.session
+
+    def set_program(self, program):
+        self.program = program
+        if len(program.scenes.all())>0:
+            self.scene = program.scenes.first().scene
+        self.state = self.States.BLANK
+        self.save()
+
+    def get_absolute_url(self):
+        return reverse('lower_third:control', kwargs={'session': self.session})

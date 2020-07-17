@@ -6,6 +6,8 @@ import datetime
 
 from django.views.generic import TemplateView, View, FormView
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
+
+from . import forms
 from .models import Session, new_key, Scene
 
 
@@ -39,15 +41,49 @@ class ControlView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         session.key = new_key()
         session.save()
         context['ses'] = session
+        self.session = session
         return context
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        if self.session.program is None:
+            return HttpResponseRedirect(
+                reverse('lower_third:program_select', kwargs={'session': self.kwargs['session']}))
+        else:
+            return response
 
 
 class SessionView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
-    template_name = "LowerThird/control.html"
+    template_name = "LowerThird/form.html"
     permission_required = "LowerThird.view_session"
+    form_class = forms.SessionSelectForm
 
-    def get_success_url(self):
-        return reverse('lower_third:control', kwargs={self.fo})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Select Session"
+        return context
+
+    def form_valid(self, form):
+        return HttpResponseRedirect(form.cleaned_data['session'].get_absolute_url())
+
+
+class ProgramSelectView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    template_name = "LowerThird/form.html"
+    permission_required = "LowerThird.update_session"
+    form_class = forms.ProgramSelectForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        session = get_object_or_404(Session, session=self.kwargs['session'])
+        context['ses'] = session
+        self.session = session
+        context['title'] = "Update Program"
+        return context
+
+    def form_valid(self, form):
+        self.get_context_data()
+        self.session.set_program(form.cleaned_data['program'])
+        return HttpResponseRedirect(reverse('lower_third:control', kwargs={'session':self.kwargs['session']}))
 
 
 class CurrentState(View):

@@ -34,16 +34,25 @@
         <div class="row mh-i">
             <div class="col-md-6">
                 <div class="btn-group btn-block btn-group-lg mb-3" role="group" aria-label="Scene Control">
-                    <button type="button" id="previous" class="btn btn-outline-dark control" onclick="showprevious()"><i class="fas fa-backward" title="Previous"></i></button>
-                    <button type="button" id="next" class="btn btn-outline-dark control" onclick="shownext()"><i class="fas fa-forward" title="Next"></i></button>
+                    <button type="button" id="previous" class="btn btn-outline-dark control" onclick="showprevious()"><i
+                            class="fas fa-backward" title="Previous"></i></button>
+                    <button type="button" id="next" class="btn btn-outline-dark control" onclick="shownext()"><i
+                            class="fas fa-forward" title="Next"></i></button>
                 </div>
-                <button type="button" id="blank" class="btn btn-outline-dark btn-lg btn-block mb-3 control" onclick="showblank()">
+                <button type="button" id="blank" class="btn btn-outline-dark btn-lg btn-block mb-3 control"
+                        onclick="showblank()">
                     {% if ses.state == "Blank" %}
                         <i class="fas fa-play" title="Un-Blank"></i>
                     {% else %}
                         <i class="fas fa-pause" title="Blank"></i>
                     {% endif %}
                 </button>
+                {% if perms.LowerThird.update_session %}
+                    <a class="btn btn-outline-dark btn-lg btn-block mb-3 control"
+                       href="{% url "lower_third:program_select" session=ses.session %}">
+                        <i class="fas fa-exchange-alt" title="Change Program"></i>
+                    </a>
+                {% endif %}
             </div>
             <div class="col-md-6 mh-i">
                 {# Scenes #}
@@ -52,8 +61,10 @@
                         {% for program_scene in ses.program.scenes.all %}
                             <button type="button"
                                     class="flex-column d-flex list-group-item control list-group-item-action{% if program_scene.scene.id == ses.scene.id %} active{% endif %} scenechange"
-                                    data-scene="{{ program_scene.scene.id }}" data-program-scene="{{ program_scene.order }}"
-                                    id="scene-{{ program_scene.order }}" onclick="scenechange({{ program_scene.order }})">
+                                    data-scene="{{ program_scene.scene.id }}"
+                                    data-program-scene="{{ program_scene.order }}"
+                                    id="scene-{{ program_scene.order }}"
+                                    onclick="scenechange({{ program_scene.order }})">
                                 <strong>{{ program_scene.scene.line1 }}</strong>
                                 <small>{{ program_scene.scene.line2 }}</small>
                             </button>
@@ -79,7 +90,7 @@
 
         let order = new Map()
         {% for program_scene in ses.program.scenes.all %}
-            order.set({{ program_scene.order }},{{ program_scene.scene.id }});
+            order.set({{ program_scene.order }}, {{ program_scene.scene.id }});
         {% endfor %}
 
 

@@ -2,17 +2,9 @@
 {% load widget_tweaks %}
 
 {% block body %}
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
-    </div>
-
-
-
     <div class="container-fluid my-4">
         <div class="card mb-3 bg-light w-50 m-auto">
-            <h1 class="card-header text-center">Login</h1>
+            <h1 class="card-header text-center">{{ title }}</h1>
             <div class="card-body">
                 <form class="flex flex-column" method="post">
                     {% csrf_token %}
@@ -23,19 +15,18 @@
                         <div class="form-group">
                             {{ field.label_tag }}
                             {{ field|add_class:"form-control form-control-lg"|add_error_class:"is-invalid" }}
-                            {% if field.help_text %}
-                                <small class="form-text">
-                                    {{ form.username.help_text }}
-                                </small>
-                            {% endif %}
                             {% if field.errors %}
                                 <small class="invalid-feedback">
-                                    {{ form.username.errors }}
+                                    {{ field.errors }}
+                                </small>
+                            {% elif field.help_text %}
+                                <small class="form-text">
+                                    {{ field.help_text }}
                                 </small>
                             {% endif %}
                         </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
+                    <button type="submit" class="btn btn-block btn-lg btn-primary">Submit</button>
                 </form>
             </div>
         </div>

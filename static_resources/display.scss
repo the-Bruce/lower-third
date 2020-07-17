@@ -1,11 +1,11 @@
-$scale: 1;
+$scale: .5;
 $logo_width: 210px * $scale;
 $logo_height: 236px * $scale;
 
-$bar_height: $logo_height - 30px;
+$bar_height: $logo_height - (30px*$scale);
 $bar_offset: $logo_width / 2;
 $main_height: $logo_height;
-$main_width: 1920px;
+$main_width: 1280px;
 
 $cathedral_black: #1E1E1E;
 $cathedral_white: #FFFFFF;
@@ -16,13 +16,13 @@ h1, h2 {
 }
 
 #top {
-  font-size: 60px;
+  font-size: 60px*$scale;
   margin: 0;
 }
 
 h2 {
   margin: 0;
-  font-size: 30pt;
+  font-size: 50px*$scale;
 }
 
 .main {

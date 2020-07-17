@@ -77,6 +77,7 @@ class Graph(models.Model):
             sum_ = 0
             for i in deltas:
                 sum_ += i.delta
+                sum_ = max(0, sum_)
                 dates.append(matplotlib.dates.date2num(i.time))
                 values.append(sum_)
 

@@ -45,10 +45,12 @@ function updateDisplay(data) {
     } else if (data['state'] === "Active") {
         top.text(data['l1']);
         bottom.text(data['l2']);
-    } else {
-        top.text("");
-        bottom.text("");
     }
+
+    if (current_state !== "Blank" && data['state'] === "Blank" )
+        $('.bar').fadeOut()
+    else if (current_state === "Blank" && data['state'] !== "Blank" )
+        $('.bar').fadeIn()
 
     // update scene list active to scene selection
     $(".scenechange").removeClass('active');
@@ -70,10 +72,12 @@ function updateDisplay(data) {
     else
         $('#next').prop('disabled', false);
 
-    if (current_state === "Blank")
+    if (current_state === "Blank") {
         $('#blank').html('<i class="fas fa-play" title="Un-Blank"></i>');
-    else
+    }
+    else {
         $('#blank').html('<i class="fas fa-pause" title="Blank"></i>');
+    }
 
 }
 

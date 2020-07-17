@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid my-4">
+    <div class="container-fluid my-4 screen">
         <div class="card mb-3">
             <div class="card-body d-flex flex-row">
                 <div class="preview">
@@ -31,7 +31,7 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row mh-i">
             <div class="col-md-6">
                 <div class="btn-group btn-block btn-group-lg mb-3" role="group" aria-label="Scene Control">
                     <button type="button" id="previous" class="btn btn-outline-dark control" onclick="showprevious()"><i class="fas fa-backward" title="Previous"></i></button>
@@ -45,18 +45,20 @@
                     {% endif %}
                 </button>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mh-i">
                 {# Scenes #}
-                <div class="list-group">
-                    {% for program_scene in ses.program.scenes.all %}
-                        <button type="button"
-                                class="flex-column d-flex list-group-item control list-group-item-action{% if program_scene.scene.id == ses.scene.id %} active{% endif %} scenechange"
-                                data-scene="{{ program_scene.scene.id }}" data-program-scene="{{ program_scene.order }}"
-                                id="scene-{{ program_scene.order }}" onclick="scenechange({{ program_scene.order }})">
-                            <strong>{{ program_scene.scene.line1 }}</strong>
-                            <small>{{ program_scene.scene.line2 }}</small>
-                        </button>
-                    {% endfor %}
+                <div class="scenes">
+                    <div class="list-group">
+                        {% for program_scene in ses.program.scenes.all %}
+                            <button type="button"
+                                    class="flex-column d-flex list-group-item control list-group-item-action{% if program_scene.scene.id == ses.scene.id %} active{% endif %} scenechange"
+                                    data-scene="{{ program_scene.scene.id }}" data-program-scene="{{ program_scene.order }}"
+                                    id="scene-{{ program_scene.order }}" onclick="scenechange({{ program_scene.order }})">
+                                <strong>{{ program_scene.scene.line1 }}</strong>
+                                <small>{{ program_scene.scene.line2 }}</small>
+                            </button>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

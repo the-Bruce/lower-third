@@ -52,6 +52,7 @@ $breakpoint: 500px;
   justify-content: space-evenly;
   padding-top: 10px;
   padding-bottom: 10px;
+
   h1, h2 {
     white-space: nowrap;
   }
@@ -63,4 +64,13 @@ $breakpoint: 500px;
 
 .fas {
   font-size: 50pt;
+}
+
+.scenes {
+  overflow-y: scroll;
+  height: available;
+}
+
+.screen {
+  height: 95vh;
 }

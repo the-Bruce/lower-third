@@ -21,10 +21,12 @@ function setup() {
                         }
                     } else if (data['state'] === "Blank") {
                         if (state === "Init" || state === "Active") {
-                            bar.fadeOut({done:function () {
+                            bar.fadeOut({
+                                done: function () {
                                     top.text("");
                                     bottom.text("");
-                                }});
+                                }
+                            });
                         }
                     } else if (data['state'] === "Active") {
                         top.text(data['l1']);

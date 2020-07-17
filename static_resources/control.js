@@ -161,7 +161,7 @@ function adjacentPrograms() {
     let prev = null, next = null;
     if (index > 0)
         prev = keys[index - 1];
-    if (index < keys.length-1)
+    if (index < keys.length - 1)
         next = keys[index + 1];
 
     return {next: next, prev: prev}

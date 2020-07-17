@@ -1,6 +1,6 @@
 //let rot = 0;
 let syncedInterval = setTimeout(function () { // run function after 1000 ms
-    }, 1000);
+}, 1000);
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection

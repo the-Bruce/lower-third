@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.urls import reverse
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 import datetime
 
-from django.views.generic import TemplateView, View
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.views.generic import TemplateView, View, FormView
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
 from .models import Session, new_key, Scene
 
 
@@ -39,6 +40,14 @@ class ControlView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         session.save()
         context['ses'] = session
         return context
+
+
+class SessionView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    template_name = "LowerThird/control.html"
+    permission_required = "LowerThird.view_session"
+
+    def get_success_url(self):
+        return reverse('lower_third:control', kwargs={self.fo})
 
 
 class CurrentState(View):

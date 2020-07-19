@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'Count',
     'widget_tweaks',
     'rangefilter',
+    'adminsortable2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

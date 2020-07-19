@@ -30,7 +30,6 @@ class ProgramScene(models.Model):
     order = models.IntegerField()
 
     class Meta:
-        unique_together = (('program', 'order'),)
         ordering = ('order',)
 
     def __str__(self):

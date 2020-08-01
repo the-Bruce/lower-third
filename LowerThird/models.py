@@ -10,8 +10,8 @@ from django.utils import timezone
 
 
 class Scene(models.Model):
-    line1 = models.CharField(max_length=30)
-    line2 = models.CharField(max_length=50)
+    line1 = models.CharField(max_length=50)
+    line2 = models.CharField(max_length=80)
 
     def __str__(self):
         return self.line1 + ": " + self.line2

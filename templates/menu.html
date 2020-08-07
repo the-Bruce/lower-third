@@ -1,0 +1,36 @@
+{% extends "core.html" %}
+
+{% block body %}
+
+    <div class="card m-3">
+        <h1 class="card-header">Ely Utils</h1>
+        <div class="card-body">
+
+            <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'count:main' %}">Count</a>
+            {% if perms.Count.view_graph %}
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'count:graph_today' %}">Count Graph</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <hr>
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'lower_third:display' %}">Lower Third
+                    Render</a>
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'lower_third:display' %}?green">Lower
+                    Third Render (Green Screen)</a>
+            {% endif %}
+            {% if perms.LowerThird.view_session %}
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'lower_third:session_select' %}">Lower
+                    Third Control</a>
+            {% endif %}
+            {% if user.is_staff %}
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'admin:index' %}">Admin</a>
+            {% endif %}
+            <hr>
+            {% if user.is_authenticated %}
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="btn btn-block btn-outline-dark btn-lg" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

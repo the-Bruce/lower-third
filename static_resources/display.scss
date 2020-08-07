@@ -11,7 +11,7 @@ $cathedral_black: #1E1E1E;
 $cathedral_white: #FFFFFF;
 
 h1, h2 {
-  font-family: "Source Sans Pro", monospace;
+  font-family: "Source Sans Pro", sans-serif;
   color: white;
 }
 
@@ -35,6 +35,10 @@ h2 {
   flex-direction: row;
 
   align-items: center;
+}
+
+.main.green {
+  background: palegreen;
 }
 
 .main img {

@@ -8,7 +8,8 @@ from django.http import HttpResponseBadRequest, JsonResponse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, RedirectView
+from django.shortcuts import reverse
 
 from Count.models import DayCount, LogItem, Graph
 
@@ -60,6 +61,15 @@ class GraphView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
             ctxt['error'] = "No data available for the selected date"
             ctxt['error_level'] = "info"
         return ctxt
+
+
+class GraphTodayView(LoginRequiredMixin, PermissionRequiredMixin, RedirectView):
+    template_name = "Count/graph.html"
+    permission_required = "Count.view_graph"
+
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse("count:graph", kwargs={'year': datetime.date.today().year, 'month': datetime.date.today().month,
+                                              'day': datetime.date.today().day})
 
 
 class CurrentState(View):

@@ -69,7 +69,7 @@ class SessionView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
 
 class ProgramSelectView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = "LowerThird/form.html"
-    permission_required = "LowerThird.update_session"
+    permission_required = "LowerThird.view_session"
     form_class = forms.ProgramSelectForm
 
     def get_context_data(self, **kwargs):

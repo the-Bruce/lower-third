@@ -47,12 +47,10 @@
                         <i class="fas fa-pause" title="Blank"></i>
                     {% endif %}
                 </button>
-                {% if perms.LowerThird.update_session %}
-                    <a class="btn btn-outline-dark btn-lg btn-block mb-3 control"
-                       href="{% url "lower_third:program_select" session=ses.session %}">
-                        <i class="fas fa-exchange-alt" title="Change Program"></i>
-                    </a>
-                {% endif %}
+                <a class="btn btn-outline-dark btn-lg btn-block mb-3 control"
+                   href="{% url "lower_third:program_select" session=ses.session %}">
+                    <i class="fas fa-exchange-alt" title="Change Program"></i>
+                </a>
             </div>
             <div class="col-md-6 mh-i">
                 {# Scenes #}

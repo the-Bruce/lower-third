@@ -9,14 +9,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-class Scene(models.Model):
-    line1 = models.CharField(max_length=50)
-    line2 = models.CharField(max_length=80, blank=True)
-
-    def __str__(self):
-        return self.line1 + ": " + self.line2
-
-
 class Program(models.Model):
     name = models.CharField(max_length=20)
 
@@ -24,8 +16,9 @@ class Program(models.Model):
         return self.name
 
 
-class ProgramScene(models.Model):
-    scene = models.ForeignKey(Scene, on_delete=models.CASCADE)
+class Scene(models.Model):
+    line1 = models.CharField(max_length=50)
+    line2 = models.CharField(max_length=80, blank=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="scenes")
     order = models.IntegerField()
 
@@ -33,7 +26,7 @@ class ProgramScene(models.Model):
         ordering = ('order',)
 
     def __str__(self):
-        return str(self.scene) + ": " + str(self.order)
+        return self.line1 + ": " + self.line2
 
 
 def new_session():
@@ -71,8 +64,8 @@ class Session(models.Model):
 
     def set_program(self, program):
         self.program = program
-        if len(program.scenes.all())>0:
-            self.scene = program.scenes.first().scene
+        if len(program.scenes.all()) > 0:
+            self.scene = program.scenes.first()
         self.state = self.States.BLANK
         self.save()
 

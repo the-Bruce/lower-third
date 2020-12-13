@@ -1,16 +1,16 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableInlineAdminMixin
-from .models import Program, Scene, ProgramScene, Session
+from .models import Program, Scene, Session
 
 
 # Register your models here.
 class SceneList(SortableInlineAdminMixin, admin.StackedInline):
-    model = ProgramScene
+    model = Scene
     extra = 0
 
 
 class SceneListExtra(SortableInlineAdminMixin, admin.StackedInline):
-    model = ProgramScene
+    model = Scene
     extra = 5
 
 
@@ -25,5 +25,4 @@ class ProgramAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Program, ProgramAdmin)
-admin.site.register(Scene)
 admin.site.register(Session)

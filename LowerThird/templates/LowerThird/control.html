@@ -56,15 +56,15 @@
                 {# Scenes #}
                 <div class="scenes">
                     <div class="list-group">
-                        {% for program_scene in ses.program.scenes.all %}
+                        {% for scene in ses.program.scenes.all %}
                             <button type="button"
-                                    class="flex-column d-flex list-group-item control list-group-item-action{% if program_scene.scene.id == ses.scene.id %} active{% endif %} scenechange"
-                                    data-scene="{{ program_scene.scene.id }}"
-                                    data-program-scene="{{ program_scene.order }}"
-                                    id="scene-{{ program_scene.order }}"
-                                    onclick="scenechange({{ program_scene.order }})">
-                                <strong>{{ program_scene.scene.line1 }}</strong>
-                                <small>{{ program_scene.scene.line2 }}</small>
+                                    class="flex-column d-flex list-group-item control list-group-item-action{% if scene.id == ses.scene.id %} active{% endif %} scenechange"
+                                    data-scene="{{ scene.id }}"
+                                    data-program-scene="{{ scene.order }}"
+                                    id="scene-{{ scene.order }}"
+                                    onclick="scenechange({{ scene.order }})">
+                                <strong>{{ scene.line1 }}</strong>
+                                <small>{{ scene.line2 }}</small>
                             </button>
                         {% endfor %}
                     </div>
@@ -75,20 +75,20 @@
 
     <script>
         let scenes = new Map();
-        {% for program_scene in ses.program.scenes.all %}
+        {% for scene in ses.program.scenes.all %}
             scenes.set(
-                {{ program_scene.scene.id }},
+                {{ scene.id }},
                 {
-                    line1: "{{ program_scene.scene.line1 }}",
-                    line2: "{{ program_scene.scene.line2 }}"
+                    line1: "{{ scene.line1 }}",
+                    line2: "{{ scene.line2 }}"
                 }
             );
         {% endfor %}
 
 
         let order = new Map()
-        {% for program_scene in ses.program.scenes.all %}
-            order.set({{ program_scene.order }}, {{ program_scene.scene.id }});
+        {% for scene in ses.program.scenes.all %}
+            order.set({{ scene.order }}, {{ scene.id }});
         {% endfor %}
 
 

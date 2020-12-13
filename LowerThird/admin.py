@@ -28,5 +28,10 @@ class ProgramAdmin(admin.ModelAdmin):
         return super().change_view(request, object_id, form_url, extra_context)
 
 
+class SessionAdmin(admin.ModelAdmin):
+    readonly_fields = ['session', 'date']
+    exclude = ['key']
+
+
 admin.site.register(Program, ProgramAdmin)
-admin.site.register(Session)
+admin.site.register(Session, SessionAdmin)

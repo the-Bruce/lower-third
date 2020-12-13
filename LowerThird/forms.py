@@ -25,4 +25,4 @@ class SessionSelectForm(forms.Form):
 
 
 class ProgramSelectForm(forms.Form):
-    program = forms.ModelChoiceField(Program.objects.all())
+    program = forms.ModelChoiceField(Program.objects.filter(archived=False))

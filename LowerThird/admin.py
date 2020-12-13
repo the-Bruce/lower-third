@@ -15,13 +15,17 @@ class SceneListExtra(SortableInlineAdminMixin, admin.StackedInline):
 
 
 class ProgramAdmin(admin.ModelAdmin):
-    inlines = [SceneList]
     save_on_top = True
     save_as = True
+    list_filter = ['archived']
 
     def add_view(self, request, form_url='', extra_context=None):
         self.inlines = [SceneListExtra]
         return super().add_view(request, form_url, extra_context)
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        self.inlines = [SceneList]
+        return super().change_view(request, object_id, form_url, extra_context)
 
 
 admin.site.register(Program, ProgramAdmin)

@@ -11,6 +11,8 @@ from django.utils import timezone
 
 class Program(models.Model):
     name = models.CharField(max_length=20)
+    archived = models.BooleanField(default=False,
+                                   help_text="Archived programs don't appear in the selection list for new sessions")
 
     def __str__(self):
         return self.name

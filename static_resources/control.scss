@@ -58,8 +58,10 @@ $breakpoint: 500px;
   }
 }
 
-.btn-lg, .btn-group-lg > .btn {
-  padding: 2.5rem 1rem;
+.chonk {
+  .btn-lg, .btn-group-lg > .btn {
+    padding: 2.5rem 1rem;
+  }
 }
 
 .fas {
@@ -73,4 +75,10 @@ $breakpoint: 500px;
 
 .screen {
   height: 95vh;
+}
+
+.w-50-sm {
+  @media (min-width: $breakpoint) {
+    width: 50%;
+  }
 }

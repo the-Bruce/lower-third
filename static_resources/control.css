@@ -46,7 +46,7 @@
   white-space: nowrap;
 }
 
-.btn-lg, .btn-group-lg > .btn {
+.chonk .btn-lg, .chonk .btn-group-lg > .btn {
   padding: 2.5rem 1rem;
 }
 
@@ -61,6 +61,12 @@
 
 .screen {
   height: 95vh;
+}
+
+@media (min-width: 500px) {
+  .w-50-sm {
+    width: 50%;
+  }
 }
 
 /*# sourceMappingURL=control.css.map */

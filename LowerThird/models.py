@@ -32,7 +32,7 @@ class Scene(models.Model):
 
 
 def new_session():
-    letters = string.ascii_letters + string.digits
+    letters = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789"  # Unambiguous letters/numbers
     return ''.join(random.choice(letters) for i in range(5))
 
 

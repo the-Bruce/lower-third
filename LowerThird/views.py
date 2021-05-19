@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse
+from django.contrib.syndication.views import Feed
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 import datetime
@@ -83,7 +84,7 @@ class ProgramSelectView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     def form_valid(self, form):
         self.get_context_data()
         self.session.set_program(form.cleaned_data['program'])
-        return HttpResponseRedirect(reverse('lower_third:control', kwargs={'session':self.kwargs['session']}))
+        return HttpResponseRedirect(reverse('lower_third:control', kwargs={'session': self.kwargs['session']}))
 
 
 class CurrentState(View):
@@ -111,6 +112,58 @@ class CurrentState(View):
                     "l2": session.scene.line2,
                 }
         return JsonResponse(ret)
+
+
+class CurrentStateRSS(Feed):
+    title = "Current State"
+    link = reverse_lazy("lower_third:session_select")
+
+    def get_object(self, request, session):
+        a,n= Session.objects.get_or_create(session=session)
+        return a
+
+    def description(self, obj: Session):
+        return "The current state of session"
+
+    def items(self, obj: Session):
+        if obj.scene is None:
+            return [("line1", "Initialising"), ("line2",obj.session)]
+        return [("line1", obj.scene.line1), ("line2", obj.scene.line2)]
+
+    def item_title(self, item):
+        return item[0]
+
+    def item_description(self, item):
+        return item[1]
+
+    def item_link(self, item):
+        return reverse("lower_third:session_select")
+
+
+class CurrentStateListRSS(Feed):
+    title = "Current State"
+    link = reverse_lazy("lower_third:session_select")
+
+    def get_object(self, request, session):
+        a,n= Session.objects.get_or_create(session=session)
+        return a
+
+    def description(self, obj: Session):
+        return "The current state of session"
+
+    def items(self, obj: Session):
+        if obj.scene is None:
+            return [("Initialising", "obj.session")]
+        return [(a.line1, a.line2) for a in obj.program.scenes.order_by("order").all()]
+
+    def item_title(self, item):
+        return item[0]
+
+    def item_description(self, item):
+        return item[1]
+
+    def item_link(self, item):
+        return reverse("lower_third:session_select")
 
 
 class UpdateState(View):

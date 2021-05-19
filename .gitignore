@@ -218,3 +218,7 @@ dmypy.json
 cython_debug/
 
 
+/MEDIA/graphs/
+/venv_win/
+/venv2/
+/.idea/

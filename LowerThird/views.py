@@ -153,7 +153,7 @@ class CurrentStateListRSS(Feed):
 
     def items(self, obj: Session):
         if obj.scene is None:
-            return [("Initialising", "obj.session")]
+            return [("Initialising", obj.session)]
         return [(a.line1, a.line2) for a in obj.program.scenes.order_by("order").all()]
 
     def item_title(self, item):

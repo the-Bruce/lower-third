@@ -60,6 +60,7 @@ class Session(models.Model):
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE, blank=True, null=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, blank=True, null=True)
     state = models.CharField(max_length=10, choices=States.choices, default=States.INITIALISING)
+    persistent = models.BooleanField(default=False)
 
     def __str__(self):
         return self.session

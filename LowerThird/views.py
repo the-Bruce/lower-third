@@ -18,7 +18,7 @@ class DisplayView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        Session.objects.filter(date__lte=timezone.now() - datetime.timedelta(days=1)).delete()
+        Session.objects.filter(persistent=False, date__lte=timezone.now() - datetime.timedelta(days=1)).delete()
         if 'session' in self.request.session:
             print('1:', self.request.session['session'])
             session, suc = Session.objects.get_or_create(session=self.request.session['session'])
@@ -37,7 +37,7 @@ class ControlView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        Session.objects.filter(date__lte=timezone.now() - datetime.timedelta(days=5)).delete()
+        Session.objects.filter(persistent=False, date__lte=timezone.now() - datetime.timedelta(days=5)).delete()
         session = get_object_or_404(Session, session=self.kwargs['session'])
         session.key = new_key()
         session.save()

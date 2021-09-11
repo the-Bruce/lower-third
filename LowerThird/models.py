@@ -57,8 +57,8 @@ class Session(models.Model):
     session = models.CharField(max_length=5, default=new_session, unique=True)
     key = models.CharField(max_length=128, default="", blank=True)
     date = models.DateField(default=timezone.now)
-    scene = models.ForeignKey(Scene, on_delete=models.CASCADE, blank=True, null=True)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, blank=True, null=True)
+    scene = models.ForeignKey(Scene, on_delete=models.SET_NULL, blank=True, null=True)
+    program = models.ForeignKey(Program, on_delete=models.SET_NULL, blank=True, null=True)
     state = models.CharField(max_length=10, choices=States.choices, default=States.INITIALISING)
     persistent = models.BooleanField(default=False)
 
